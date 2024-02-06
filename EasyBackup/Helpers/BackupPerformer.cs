@@ -123,7 +123,8 @@ namespace EasyBackup.Helpers
             // If the destination directory doesn't exist, create it.
             if (!Directory.Exists(destDirName) && !_isCalculatingFileSize)
             {
-                Directory.CreateDirectory(destDirName);
+                var destDirNameForceLong = "\\\\?\\" + destDirName; // force long path syntax
+                Directory.CreateDirectory(destDirNameForceLong);
             }
 
             // Get the files in the directory and copy them to the new location.
@@ -487,7 +488,8 @@ namespace EasyBackup.Helpers
                     backupDirectory = Path.Combine(backupDirectory, "easy-backup", backupName);
                     if (!Directory.Exists(backupDirectory) && !_isCalculatingFileSize)
                     {
-                        Directory.CreateDirectory(backupDirectory);
+                        var backupDirectoryForceLong = "\\\\?\\" + backupDirectory; // force long path syntax
+                        Directory.CreateDirectory(backupDirectoryForceLong);
                     }
                     else if (!_isCalculatingFileSize)
                     {
@@ -497,7 +499,8 @@ namespace EasyBackup.Helpers
                         backupDirectory = Path.Combine(backupDirectory, "easy-backup", backupName);
                         if (!Directory.Exists(backupDirectory))
                         {
-                            Directory.CreateDirectory(backupDirectory);
+                            var backupDirectoryForceLong = "\\\\?\\" + backupDirectory; // force long path syntax
+                            Directory.CreateDirectory(backupDirectoryForceLong);
                         }
                         else
                         {
@@ -532,7 +535,8 @@ namespace EasyBackup.Helpers
                             var outputDirectoryPath = Path.Combine(backupDirectory, directoryName);
                             if (!Directory.Exists(outputDirectoryPath) && !_isCalculatingFileSize)
                             {
-                                Directory.CreateDirectory(outputDirectoryPath);
+                                var outputDirectoryPathForceLong = "\\\\?\\" + outputDirectoryPath; // force long path syntax
+                                Directory.CreateDirectory(outputDirectoryPathForceLong);
                             }
                             if (!_isCalculatingFileSize)
                             {
@@ -557,7 +561,8 @@ namespace EasyBackup.Helpers
                                             // create directory if needed in backup path
                                             if (!Directory.Exists(outputBackupDirectory))
                                             {
-                                                Directory.CreateDirectory(outputBackupDirectory);
+                                                var outputBackupDirectoryForceLong = "\\\\?\\" + outputBackupDirectory; // force long path syntax
+                                                Directory.CreateDirectory(outputBackupDirectoryForceLong);
                                             }
                                             if (HasBeenCanceled)
                                             {
